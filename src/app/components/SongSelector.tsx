@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function SongSelector({ categoryId, onSelect, onClose, excludeSongIds }: Props) {
-  const [songs, setSongs] = useState([])
+  const [songs, setSongs] = useState<any[]>([])
   const [searchTerm, setSearchTerm] = useState('')
   const [loading, setLoading] = useState(true)
 
