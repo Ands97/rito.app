@@ -6,12 +6,13 @@ import { supabase } from '@/lib/supabase'
 import CategorySection from '../../../components/CategorySection'
 import { Loading } from '@/app/components/Loading'
 import { Header } from '@/app/components/Header'
+import { Mass } from '@/types'
 
 export default function EditMassPage() {
   const params = useParams()
-  const [mass, setMass] = useState(null)
-  const [categories, setCategories] = useState([])
-  const [massSongs, setMassSongs] = useState([])
+  const [mass, setMass] = useState<Mass | null>(null)
+  const [categories, setCategories] = useState<any[]>([])
+  const [massSongs, setMassSongs] = useState<any[]>([])
 
   useEffect(() => {
     if (params.id) {

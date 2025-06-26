@@ -11,7 +11,7 @@ interface Props {
     name: string
     order_index: number
   }
-  massId: string
+  massId: string | any
   massSongs: Array<{
     id: string
     song_id: string
