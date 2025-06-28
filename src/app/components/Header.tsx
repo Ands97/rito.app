@@ -29,13 +29,21 @@ export const Header = () => {
                                     {user.company_name}
                                 </div>
                             </div>
-                            <button
-                                onClick={() => setShowCreateModal(true)}
-                                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl flex items-center gap-2 font-semibold transition duration-200 hover:scale-105 active:scale-95 shadow-lg"
-                            >
-                                <Plus size={20} />
-                                Nova Missa
-                            </button>
+                            <div className="flex gap-4 items-center">
+                                <button
+                                    onClick={() => setShowCreateModal(true)}
+                                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl flex items-center gap-2 font-semibold transition duration-200 hover:scale-105 active:scale-95 shadow-lg"
+                                >
+                                    <Plus size={20} />
+                                    Nova Missa
+                                </button>
+                                <button
+                                    onClick={() => auth?.signOut()}
+                                    className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl font-semibold transition duration-200 hover:scale-105 active:scale-95 shadow-lg"
+                                >
+                                    Sair
+                                </button>
+                            </div>
                         </>
                     ) : (
                         <a

@@ -1,18 +1,33 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import CategorySection from '../../../components/CategorySection'
 import { Loading } from '@/app/components/Loading'
 import { Header } from '@/app/components/Header'
 import { Mass } from '@/types'
+import { useAuth } from '@/context/AuthContext'
 
 export default function EditMassPage() {
   const params = useParams()
+  const router = useRouter()
+  const auth = useAuth()
   const [mass, setMass] = useState<Mass | null>(null)
   const [categories, setCategories] = useState<any[]>([])
   const [massSongs, setMassSongs] = useState<any[]>([])
+
+  useEffect(() => {
+    if (!auth?.user) {
+      router.push('/')
+      return
+    }
+
+    if (params.id) {
+      fetchMassData()
+      fetchCategories()
+    }
+  }, [params.id, auth?.user])
 
   useEffect(() => {
     if (params.id) {

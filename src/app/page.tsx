@@ -72,7 +72,8 @@ export default function HomePage() {
                                         <Music size={14} />
                                         Apresentar
                                     </a>
-                                    <button
+                                    {canEditMass(mass) && (
+                                        <button
                                         onClick={() => removeMass(mass.id)}
                                         type="button"
                                         className="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition duration-200 hover:scale-105 active:scale-95"
@@ -80,6 +81,7 @@ export default function HomePage() {
                                         <Trash size={14} /> 
                                         Remover
                                     </button>
+                                    )}
                                 </div>
                             </div>
                         ))}

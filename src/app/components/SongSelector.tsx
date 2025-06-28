@@ -49,13 +49,19 @@ export default function SongSelector({ categoryId, onSelect, onClose, excludeSon
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 text-black">
-      <div className="bg-white rounded-lg w-full max-w-2xl max-h-[80vh] flex flex-col">
-        <div className="flex justify-between items-center p-6 border-b">
-          <h2 className="text-xl font-semibold">Selecionar Música</h2>
-          <button onClick={onClose}>
-            <X size={20} />
-          </button>
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-gray-800 rounded-lg w-full max-w-2xl max-h-[80vh] flex flex-col">
+        <div className="flex justify-between items-center p-6">
+          <h2 className="text-xl font-semibold text-white">Selecionar Música</h2>
+          <button
+                        onClick={onClose}
+                        className="w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center transition duration-200 group"
+                    >
+                        <X
+                            size={18}
+                            className="text-gray-400 group-hover:text-white"
+                        />
+                    </button>
         </div>
 
         <div className="p-6 border-b">
@@ -66,8 +72,8 @@ export default function SongSelector({ categoryId, onSelect, onClose, excludeSon
               placeholder="Buscar por título ou artista..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border rounded-lg"
-            />
+              className="block w-full pl-10 pr-3 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+              />
           </div>
         </div>
 
@@ -85,11 +91,11 @@ export default function SongSelector({ categoryId, onSelect, onClose, excludeSon
                 <div
                   key={song.id}
                   onClick={() => onSelect(song.id)}
-                  className="border rounded-lg p-4 hover:bg-blue-50 cursor-pointer transition-colors"
-                >
-                  <h4 className="font-medium">{song.title}</h4>
+                  className="rounded-lg p-4 bg-gray-700 cursor-pointer hover:bg-gray-600 transition-colors"
+                  >
+                  <h4 className="font-medium text-white">{song.title}</h4>
                   {song.artist && (
-                    <p className="text-gray-600 text-sm">{song.artist}</p>
+                    <p className="text-gray-400 text-sm">{song.artist}</p>
                   )}
                   <div className="flex gap-2 mt-2 text-xs text-gray-500">
                     {song.chords && <span>• Cifras</span>}
