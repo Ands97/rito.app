@@ -119,9 +119,9 @@ export default function CategorySection({ category, massId, massSongs, onUpdate 
   }
 
   return (
-    <div className="mb-8 bg-white rounded-lg shadow-md">
-      <div className="bg-blue-50 px-6 py-4 rounded-t-lg">
-        <h3 className="text-lg font-semibold text-blue-800">{category.name}</h3>
+    <div className="mb-8 bg-gray-800 rounded-lg shadow-md">
+      <div className="bg-gray-800 border border-gray-700 px-6 py-4 rounded-t-lg">
+        <h3 className="text-lg font-semibold text-white">{category.name}</h3>
       </div>
       
       <div className="p-6">
@@ -135,7 +135,7 @@ export default function CategorySection({ category, massId, massSongs, onUpdate 
             {massSongs.map((massSong, index) => (
               <div
                 key={massSong.id}
-                className="border rounded-lg p-4 bg-gray-50"
+                className="rounded-lg p-4 bg-gray-700"
                 draggable
                 onDragStart={(e) => e.dataTransfer.setData('text/plain', massSong.id)}
                 onDragOver={(e) => e.preventDefault()}
@@ -147,9 +147,9 @@ export default function CategorySection({ category, massId, massSongs, onUpdate 
               >
                 <div className="flex justify-between items-start">
                   <div className="flex-1">
-                    <h4 className="font-medium text-lg">{massSong.song?.title}</h4>
+                    <h4 className="font-medium text-lg text-white">{massSong.song?.title}</h4>
                     {massSong.song?.artist && (
-                      <p className="text-gray-600">{massSong.song.artist}</p>
+                      <p className="text-gray-400">{massSong.song.artist}</p>
                     )}
                     
                     {/* Links externos */}
@@ -213,7 +213,7 @@ export default function CategorySection({ category, massId, massSongs, onUpdate 
                       ) : (
                         <div
                           onClick={() => setEditingNotes(massSong.id)}
-                          className="text-sm text-gray-600 cursor-pointer hover:bg-gray-100 p-1 rounded"
+                          className="text-sm text-gray-400 cursor-pointer  p-1 rounded"
                         >
                           {massSong.notes || 'Clique para adicionar notas...'}
                         </div>

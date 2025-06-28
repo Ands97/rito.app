@@ -27,7 +27,6 @@ export type Database = {
           youtube_url: string | null
           cifraclub_url: string | null
           category_id: string | null
-          user_id: string | null
           created_at: string
         }
       }
@@ -38,7 +37,7 @@ export type Database = {
           description: string | null
           mass_date: string
           liturgical_context: string | null
-          user_id: string | null
+          company_id: string | null
           created_at: string
         }
       }
@@ -50,6 +49,21 @@ export type Database = {
           category_id: string
           order_index: number
           notes: string | null
+        }
+      },
+      users: {
+        Row: {
+          id: string
+          nome: string
+          company_id: string
+          created_at: string
+        }
+      },
+      companies: {
+        Row: {
+          id: string
+          name: string
+          created_at: string
         }
       }
     }

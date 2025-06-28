@@ -22,6 +22,8 @@ export interface Category {
     description?: string
     mass_date: string
     liturgical_context?: string
+    user_id: string
+    company_id?: string
   }
   
   export interface MassSong {

@@ -52,7 +52,7 @@ export default function EditMassPage() {
   if (!mass) return <Loading />
 
   return (
-    <div className="container mx-auto p-6 text-black">
+    <div className="container mx-auto p-6 text-black min-h-screen bg-gray-900">
       <Header />
       <h1 className="text-3xl font-bold mb-6 text-white">{mass.title}</h1>
       
