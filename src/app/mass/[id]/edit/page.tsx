@@ -18,16 +18,11 @@ export default function EditMassPage() {
   const [massSongs, setMassSongs] = useState<any[]>([])
 
   useEffect(() => {
-    if (!auth?.user) {
-      router.push('/')
-      return
-    }
-
     if (params.id) {
       fetchMassData()
       fetchCategories()
     }
-  }, [params.id, auth?.user])
+  }, [params.id])
 
   useEffect(() => {
     if (params.id) {
