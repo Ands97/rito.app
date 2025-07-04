@@ -48,7 +48,7 @@ export default function CategorySection({ category, massId, massSongs, onUpdate 
           mass_id: massId,
           song_id: songId,
           category_id: category.id,
-          order_index: maxOrder + 1
+          order_index: category.order_index
         }])
 
       if (error) throw error

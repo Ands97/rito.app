@@ -81,7 +81,7 @@ export default function PresentMassPage() {
 
             {/* Miniplayer do YouTube */}
             {youtubeEmbedUrl && (
-              <div className="w-48 h-28"> {/* Ajuste largura (w-48) e altura (h-28) conforme necessário */}
+              <div className="w-48 h-28">
                 <iframe
                   src={youtubeEmbedUrl}
                   title="YouTube video player"
@@ -95,18 +95,18 @@ export default function PresentMassPage() {
         </div>
 
         {/* Conteúdo da música */}
-        <div className="bg-gray-800 rounded-lg p-6 mb-6 min-h-96">
+        <div className="bg-gray-800 rounded-lg p-4 md:p-6 mb-4 md:mb-6 min-h-24 md:min-h-96">
           {showChords && currentSong.song?.chords ? (
-            <pre className="whitespace-pre-wrap text-lg leading-relaxed">
-              {currentSong.song.chords}
-            </pre>
-          ) : (
-            <div className="text-lg leading-relaxed">
-              {currentSong.song?.lyrics?.split('\n').map((line: any, i: number) => (
-                <p key={i} className="mb-2">{line}</p>
-              ))}
+            <div className="overflow-x-auto md:overflow-x-visible">
+              <pre className="whitespace-pre text-xs sm:text-sm md:text-lg leading-tight md:leading-relaxed font-mono w-max md:w-auto">
+                {currentSong.song.chords}
+              </pre>
             </div>
-          )}
+          ) : currentSong.song?.lyrics ? (
+            <pre className="whitespace-pre-wrap md:text-lg leading-relaxed max-w-full transform scale-80 md:scale-100">
+              {currentSong.song.lyrics}
+            </pre>
+          ) : null}
         </div>
 
         {/* Navegação */}
