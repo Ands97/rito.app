@@ -5,12 +5,14 @@ import { ChevronLeft, ChevronRight, Music, Volume2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { Loading } from '@/app/components/Loading'
 import { Header } from '@/app/components/Header'
+import { chordTransposer } from '@/utils/chordTransposer'
 
 export default function PresentMassPage() {
   const params = useParams()
   const [currentSongIndex, setCurrentSongIndex] = useState(0)
   const [massSongs, setMassSongs] = useState<any[]>([])
   const [showChords, setShowChords] = useState(true)
+  const [transpositionKey, setTranspositionKey] = useState('C')
 
   useEffect(() => {
     fetchMassSongs()
@@ -27,6 +29,7 @@ export default function PresentMassPage() {
       .eq('mass_id', params.id)
       .order('order_index')
     setMassSongs(data || [])
+    setTranspositionKey(data?.[0]?.song?.tonality || 'C')
   }
 
   const currentSong = massSongs[currentSongIndex]
@@ -59,7 +62,7 @@ export default function PresentMassPage() {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <div className="container mx-auto p-6">
-      <Header />
+        <Header />
 
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
@@ -70,7 +73,27 @@ export default function PresentMassPage() {
               <p className="text-gray-300">{currentSong.song.artist}</p>
             )}
           </div>
+          
           <div className="flex items-center gap-4">
+            <select
+              value={transpositionKey}
+              onChange={(e) => setTranspositionKey(e.target.value)}
+              className="w-20 bg-gray-700 border border-gray-600 rounded text-white p-1"
+            >
+              <option value="C">C</option>
+              <option value="C#">C#</option>
+              <option value="D">D</option>
+              <option value="D#">D#</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="F#">F#</option>
+              <option value="G">G</option>
+              <option value="G#">G#</option>
+              <option value="A">A</option>
+              <option value="A#">A#</option>
+              <option value="B">B</option>
+            </select>
+
             {/* Botão de Áudio Existente */}
             {currentSong.song?.audio_url && (
               <button className="bg-green-600 px-3 py-1 rounded flex items-center gap-2">
@@ -99,7 +122,7 @@ export default function PresentMassPage() {
           {showChords && currentSong.song?.chords ? (
             <div className="overflow-x-auto md:overflow-x-visible">
               <pre className="whitespace-pre text-xs sm:text-sm md:text-lg leading-tight md:leading-relaxed font-mono w-max md:w-auto">
-                {currentSong.song.chords}
+                {chordTransposer(currentSong.song.chords, currentSong.song.tonality, transpositionKey)}
               </pre>
             </div>
           ) : currentSong.song?.lyrics ? (
@@ -136,6 +159,6 @@ export default function PresentMassPage() {
           </button>
         </div>
       </div>
-    </div>
+    </div>  
   )
 }

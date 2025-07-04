@@ -25,6 +25,7 @@ export default function CreateSongModal({
         youtube_url: "",
         cifraclub_url: "",
         category_id: categoryId || "",
+        tonality: "C", // valor padrão
     });
     const [importing, setImporting] = useState(false);
     const [error, setError] = useState("");
@@ -134,35 +135,63 @@ export default function CreateSongModal({
                                 Título *
                             </label>
                             <input
-                                    type="text"
-                                    required
-                                    value={formData.title}
-                                    onChange={(e) =>
-                                        setFormData({
-                                            ...formData,
-                                            title: e.target.value,
-                                        })
-                                    }
-                                    className="block w-full pl-3 pr-3 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
-                                />
+                                type="text"
+                                required
+                                value={formData.title}
+                                onChange={(e) =>
+                                    setFormData({
+                                        ...formData,
+                                        title: e.target.value,
+                                    })
+                                }
+                                className="block w-full pl-3 pr-3 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                            />
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-300 mb-2">
                                 Artista
                             </label>
                             <input
-                                    type="text"
-                                    required
-                                    value={formData.artist}
-                                    onChange={(e) =>
-                                        setFormData({
-                                            ...formData,
-                                            artist: e.target.value,
-                                        })
-                                    }
-                                    className="block w-full pl-3 pr-3 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
-                                />
+                                type="text"
+                                value={formData.artist}
+                                onChange={(e) =>
+                                    setFormData({
+                                        ...formData,
+                                        artist: e.target.value,
+                                    })
+                                }
+                                className="block w-full pl-3 pr-3 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                            />
                         </div>
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                            Tonalidade
+                        </label>
+                        <select
+                            value={formData.tonality}
+                            onChange={(e) =>
+                                setFormData({
+                                    ...formData,
+                                    tonality: e.target.value,
+                                })
+                            }
+                            className="block w-full pl-3 pr-3 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                        >
+                            <option value="C">C</option>
+                            <option value="C#">C#</option>
+                            <option value="D">D</option>
+                            <option value="D#">D#</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="F#">F#</option>
+                            <option value="G">G</option>
+                            <option value="G#">G#</option>
+                            <option value="A">A</option>
+                            <option value="A#">A#</option>
+                            <option value="B">B</option>
+                        </select>
                     </div>
 
                     <div className="space-y-4">
