@@ -37,12 +37,14 @@ export default function PresentMassPage() {
   const nextSong = () => {
     if (currentSongIndex < massSongs.length - 1) {
       setCurrentSongIndex(currentSongIndex + 1)
+      setTranspositionKey(massSongs[currentSongIndex + 1].song?.tonality || 'C')
     }
   }
 
   const prevSong = () => {
     if (currentSongIndex > 0) {
       setCurrentSongIndex(currentSongIndex - 1)
+      setTranspositionKey(massSongs[currentSongIndex - 1].song?.tonality || 'C')
     }
   }
 
